@@ -4,24 +4,12 @@ footer {
     .container {
         width: 100%;
         padding: 20px;
-
-        .header {
-            width: calc(100% - 80px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        
+        width: calc(100% - 80px); 
+        display: flex;
+        justify-content: center;
             .logo {
                 font-size: 1.5em;
                 font-weight: bold;
             }
-        
-        }
-        
-        .content {
-            display: flex;
-            justify-content: space-between;
-        
-        }
-    }
+        }   
 }
