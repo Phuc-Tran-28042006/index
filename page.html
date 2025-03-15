@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    :root {
+        --main-color: #000000;
+    }
+    .container {
+        position: relative;
+        margin-top: 70vh;
+        width: calc(60% - 70px);
+        height: 500px;
+        background-color: #ffffff;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        transition: transform 0.5s ease, width 0.5s ease, height 0.5s ease, left 0.5s ease;
+    }
+    .container.left {
+        width: calc(30% - 35px);
+        height: 250px;
+        transform: translate(-75%, -50%);
+        left: 30%;
+    }
+    .triangle-right {
+        width: 50%;
+        height: 100%;
+        clip-path: polygon(30% 50%, 100% 0%, 100% 100%);
+        background-color: var(--main-color);
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 6;
+    }
+    .triangle-up {
+        width: 100%;
+        height: 75%;
+        clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+        background-color: var(--main-color);
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: transform 1s ease , z-index 1s ease;
+        transform-origin: top;
+        z-index: 9;
+    }
+    .triangle-up.move-up {
+        transform: rotateX(180deg);
+        z-index: 4;
+    }
+    .triangle-up.hidden {
+        display: none;
+    }
+    .triangle-left {
+        width: 50%;
+        height: 100%;
+        clip-path: polygon(0% 0%, 70% 50%, 0% 100%);
+        background-color: var(--main-color);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 6;
+    }
+    .triangle-bottom {
+        width: 100%;
+        height: 50%;
+        clip-path:  polygon(35% 0%, 65% 0%, 100% 100%, 0% 100%);
+        background-color: var(--main-color);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 6;
+        box-shadow:  0 0 0 5px rgb(17, 68, 67);
+    }
+    .triangle-vuong {
+        text-align: center;
+        width: 70%;
+        height: 70%;
+        background-color: rgb(20, 2, 137);
+        position: absolute;
+        color: white;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3; 
+        transition: transform 1s ease, z-index 1s ease;
+        transform-origin: bottom;
+    }
+    .triangle-vuong.grow {
+        transform: translateX(-50%) scaleY(1.5);
+        z-index: 5;
+    }
+    .text {
+        width: calc(50% - 20px);
+        height: 400px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-radius: 10px;
+        background-color: rgb(0, 0, 0);
+        color: white;
+        z-index: 7;
+        margin-left: auto;
+        display: none;
+    }
+    .text.show {
+        display: block;
+    }
+    .nhap_lieu {
+        width: 50%;
+        height: 50px;
+        border-radius: 10px;
+        border: none;
+        padding: 10px;
+        font-size: 20px;
+    }
+    .arrow {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
+    }
+    @media screen and (max-width: 768px) {
+        .container {
+            width: calc(80% - 70px);
+            height: 500px;
+        }
+        .triangle-vuong {
+            width: 90%;
+            height: 90%;
+        }
+        .text {
+            width: calc(80% - 20px);
+        }
+        
+    }
+</style>
+<body>
+    <div class="text">hello</div>
+    <div class="container">
+        <div class="triangle-left"></div>
+        <div class="triangle-right"></div>
+        <div class="triangle-bottom"></div>
+        <div class="triangle-up"></div>
+        <div class="triangle-vuong"> hãy lướt xuống dưới và ấn vào thiệp mời đề đóng lại</div>
+    </div>
+    <div class="arrow">ấn vào đây</div>
+    <div style="display: flex;">
+        <input type="text" id="textInput" class="nhap_lieu" placeholder="Nhập vào đây dòng chữ bạn muốn gửi vào đối phương khi mở thiệp">
+        <div>
+            <input type="color" id="colorPicker">  
+            <p>chọn màu cho thiệp</p>
+        </div>
+    </div>    
+    <script>
+        let tam = 0;
+        document.querySelector('.triangle-up').addEventListener('click', () => {
+            let triangle = document.querySelector('.triangle-up');
+            triangle.classList.toggle('move-up');
+            tam++;
+            if (tam == 3) {
+                let vuong = document.querySelector('.triangle-vuong');
+                vuong.textContent = 'ấn vào đây';
+            }
+            setTimeout(() => {
+                let vuong = document.querySelector('.triangle-vuong');
+                vuong.classList.toggle('grow');
+            }, 300);
+        });
+        document.querySelector('.triangle-left').addEventListener('click', () => {
+            let triangle = document.querySelector('.triangle-up');
+            triangle.classList.toggle('move-up');
+            tam++;
+            if (tam == 3) {
+                let vuong = document.querySelector('.triangle-vuong');
+                vuong.textContent = 'ấn vào đây';
+            }
+            setTimeout(() => {
+                let vuong = document.querySelector('.triangle-vuong');
+                vuong.classList.toggle('grow');
+            }, 300);
+        });
+        document.querySelector('.triangle-right').addEventListener('click', () => {
+            let triangle = document.querySelector('.triangle-up');
+            triangle.classList.toggle('move-up');
+            tam++;
+            if (tam == 3) {
+                let vuong = document.querySelector('.triangle-vuong');
+                vuong.textContent = 'ấn vào đây';
+            }
+            setTimeout(() => {
+                let vuong = document.querySelector('.triangle-vuong');
+                vuong.classList.toggle('grow');
+            }, 300);
+        });
+        document.querySelector('.triangle-bottom').addEventListener('click', () => {
+            let triangle = document.querySelector('.triangle-up');
+            triangle.classList.toggle('move-up');
+            tam++;
+            if (tam == 3) {
+                let vuong = document.querySelector('.triangle-vuong');
+                vuong.textContent = 'ấn vào đây';
+            }
+            setTimeout(() => {
+                let vuong = document.querySelector('.triangle-vuong');
+                vuong.classList.toggle('grow');
+            }, 300);
+        });
+        document.querySelector('.triangle-vuong').addEventListener('click', () => {
+            let container = document.querySelector('.container');
+            container.classList.toggle('left');
+            setTimeout(() => {
+                let text = document.querySelector('.text');
+                text.classList.toggle('show');
+            }, 500);
+        });
+        document.querySelector('#textInput').addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                let text = document.querySelector('.text');
+                text.innerHTML = this.value;
+                this.value = '';
+            }
+        });
+        document.querySelector('#colorPicker').addEventListener('input', function () {
+            document.documentElement.style.setProperty('--main-color', this.value);
+        });
+    </script>
+</body>
+</html>
